@@ -153,5 +153,3 @@ We appreciate clean, documented code and clear descriptions of what you've done.
 ## 📄 License
 
 This project is licensed under the **MIT License**. See `license.txt` for full details.
-
-```
