@@ -1,70 +1,71 @@
+**TASKFLOW**
+---
+
 ```markdown
 # TaskFlow
 
-**TaskFlow** is a simple task management system built with CodeIgniter 3. It allows users to create, edit, and delete tasks, and provides basic statistics through a dashboard. This project does not include authentication, and is intended for internal or educational use.
+**TaskFlow** is a simple task management application built with CodeIgniter 3. It allows users to create, edit, and delete tasks. This project does **not include user authentication**, and is intended for local usage or internal development environments.
 
 ---
 
-## 🚀 Features
+## 🎯 Key Features
 
-- Task management (Create, Read, Update, Delete)
-- Dashboard with task statistics
-- Category and priority color labels
+- Task Management (CRUD)
+- Task statistics on the dashboard
+- Modern UI using Bootstrap 5
+- Basic REST API (GET/POST/PUT/DELETE)
+- Color-coded categories and priorities
 - Task filtering by status, priority, and category
-- Basic JSON API for integration
-- Bootstrap 5 responsive design
 
 ---
 
-## 📁 Project Structure
+## 📦 Project Structure
 
 ```
 
 taskflow/
 ├── application/
-│   ├── controllers/
-│   ├── models/
-│   ├── views/
-│   └── config/
-├── assets/
-├── system/
+│   ├── controllers/     # Dashboard, Tasks, API
+│   ├── models/          # Task\_model
+│   ├── views/           # Dashboard and tasks pages
+│   └── config/          # Database, routing, autoload config
+├── assets/              # CSS, JS, and images
+├── system/              # CodeIgniter core
 ├── index.php
 ├── composer.json
 └── .gitignore
 
-````
+1. **Installation**:
+   
+	```` 
+	**Clone or extract** into your local server folder (e.g., `htdocs` for XAMPP):
+	```bash
+	git clone https://github.com/yourusername/taskflow.git
+	````
 
----
-
-## ⚙️ Installation
-
-1. **Clone or download** this repository into your local server directory (e.g. `htdocs/` for XAMPP):
-
-   ```bash
-   git clone https://github.com/yourusername/taskflow.git
-````
-
-2. **Create a database** in MySQL and import the schema:
+3. **Create a MySQL database** and import the initial schema:
 
    ```sql
    CREATE DATABASE taskflow_db;
-   -- Tables for `tasks` and `categories` are required
+   USE taskflow_db;
+
+   -- Tables `tasks` and `categories` are required
    ```
 
-3. **Configure the database** in:
+4. **Edit the database configuration**:
 
    ```
    application/config/database.php
    ```
 
-4. **Set the base URL** in:
+5. **Set the base URL**:
 
    ```
    application/config/config.php
    $config['base_url'] = 'http://localhost/taskflow/';
    ```
 
-5. **Run the project** in your browser:
+6. **Run the application** in your browser:
 
    ```
    http://localhost/taskflow
@@ -74,35 +75,52 @@ taskflow/
 
 ## 📌 Usage
 
-* **Dashboard** shows total tasks, status overview, and recent tasks.
-* **Tasks page** allows you to:
+* **Dashboard** displays overall task statistics and recent activity.
+* **Task Management**:
 
-  * Create new tasks
-  * Filter by status, priority, or category
-  * Update status directly from task list
-  * Edit or delete tasks
+  * Create, edit, delete tasks
+  * Filter tasks by status (pending, in progress, completed), priority, or category
+* **Predefined Categories**: Listed in the `categories` table
+* **Status Control**: Tasks can be updated directly from the main list
 
-> Note: All features are public — there is no login or role-based access yet.
+---
+
+## 🧰 Technologies Used
+
+* PHP 7.x / 8.x
+* CodeIgniter 3.x
+* Bootstrap 5
+* jQuery
+* MySQL / MariaDB
+
+---
+
+## 📝 Notes
+
+* There is no login or role-based user system.
+* Ideal for prototypes, student projects, or internal tools.
 
 ---
 
 ## 🔌 API Endpoints
 
+TaskFlow provides a few basic public API endpoints:
+
 | Method | Endpoint          | Description              |
 | ------ | ----------------- | ------------------------ |
-| GET    | `/api/tasks`      | Get all tasks            |
-| GET    | `/api/tasks/{id}` | Get a specific task      |
-| POST   | `/api/tasks`      | Create a new task        |
-| PUT    | `/api/tasks/{id}` | Update a task            |
+| GET    | `/api/tasks`      | Retrieve all tasks       |
+| GET    | `/api/tasks/{id}` | Retrieve a specific task |
+| POST   | `/api/tasks`      | Create a new task (JSON) |
+| PUT    | `/api/tasks/{id}` | Update a task (JSON)     |
 | DELETE | `/api/tasks/{id}` | Delete a task            |
-| GET    | `/api/stats`      | Get dashboard statistics |
+| GET    | `/api/stats`      | Retrieve dashboard stats |
 
-Example JSON for POST/PUT:
+Sample JSON body for `POST` or `PUT`:
 
 ```json
 {
   "title": "Sample Task",
-  "description": "Details about the task",
+  "description": "Task description",
   "priority": "high",
   "category": "Development",
   "status": "pending",
@@ -112,44 +130,38 @@ Example JSON for POST/PUT:
 
 ---
 
-## 🧠 Tech Stack
-
-* PHP 7.x / 8.x
-* CodeIgniter 3.x
-* MySQL / MariaDB
-* Bootstrap 5
-* jQuery
-
----
-
 ## 🛤 Roadmap
 
-Planned features for future development:
+Planned improvements for future versions:
 
-* [ ] User authentication system
-* [ ] Role-based access (Admin/User)
-* [ ] UI for managing categories
-* [ ] Task export to PDF/Excel
-* [ ] Notification for upcoming deadlines
-* [ ] Fully responsive mobile view
-* [ ] Dark mode
+* [ ] Add user authentication (Login, Admin/User roles)
+* [ ] UI for category management
+* [ ] Export to PDF/Excel
+* [ ] Task deadline notifications (email / popup)
+* [ ] Fully responsive design for mobile
+* [ ] Dark mode support
+
+Feel free to contribute and help us bring these features to life!
 
 ---
 
 ## 🤝 Contributing
 
-Want to contribute? Great! Here's how:
+Contributions are welcome! To get started:
 
 1. Fork this repository
-2. Create a new branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -m 'Add feature'`
-4. Push to your branch: `git push origin feature-name`
+2. Create a new branch (`git checkout -b feature-name`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push your branch (`git push origin feature-name`)
 5. Open a Pull Request
 
-We appreciate clean, documented code and clear descriptions of what you've done.
+Please include a clear explanation of what you changed and why.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See `license.txt` for full details.
+This project is licensed under the **MIT License**.
+See `license.txt` for more information.
+
+---
