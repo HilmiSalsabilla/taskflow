@@ -1,71 +1,157 @@
-###################
-What is CodeIgniter
-###################
+```markdown
+# TaskFlow
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+**TaskFlow** is a simple task management system built with CodeIgniter 3. It allows users to create, edit, and delete tasks, and provides basic statistics through a dashboard. This project does not include authentication, and is intended for internal or educational use.
 
-*******************
-Release Information
-*******************
+---
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+## 🚀 Features
 
-**************************
-Changelog and New Features
-**************************
+- Task management (Create, Read, Update, Delete)
+- Dashboard with task statistics
+- Category and priority color labels
+- Task filtering by status, priority, and category
+- Basic JSON API for integration
+- Bootstrap 5 responsive design
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+---
 
-*******************
-Server Requirements
-*******************
+## 📁 Project Structure
 
-PHP version 5.6 or newer is recommended.
+```
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+taskflow/
+├── application/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── config/
+├── assets/
+├── system/
+├── index.php
+├── composer.json
+└── .gitignore
 
-************
-Installation
-************
+````
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+---
 
-*******
-License
-*******
+## ⚙️ Installation
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+1. **Clone or download** this repository into your local server directory (e.g. `htdocs/` for XAMPP):
 
-*********
-Resources
-*********
+   ```bash
+   git clone https://github.com/yourusername/taskflow.git
+````
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+2. **Create a database** in MySQL and import the schema:
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+   ```sql
+   CREATE DATABASE taskflow_db;
+   -- Tables for `tasks` and `categories` are required
+   ```
 
-***************
-Acknowledgement
-***************
+3. **Configure the database** in:
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+   ```
+   application/config/database.php
+   ```
+
+4. **Set the base URL** in:
+
+   ```
+   application/config/config.php
+   $config['base_url'] = 'http://localhost/taskflow/';
+   ```
+
+5. **Run the project** in your browser:
+
+   ```
+   http://localhost/taskflow
+   ```
+
+---
+
+## 📌 Usage
+
+* **Dashboard** shows total tasks, status overview, and recent tasks.
+* **Tasks page** allows you to:
+
+  * Create new tasks
+  * Filter by status, priority, or category
+  * Update status directly from task list
+  * Edit or delete tasks
+
+> Note: All features are public — there is no login or role-based access yet.
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint          | Description              |
+| ------ | ----------------- | ------------------------ |
+| GET    | `/api/tasks`      | Get all tasks            |
+| GET    | `/api/tasks/{id}` | Get a specific task      |
+| POST   | `/api/tasks`      | Create a new task        |
+| PUT    | `/api/tasks/{id}` | Update a task            |
+| DELETE | `/api/tasks/{id}` | Delete a task            |
+| GET    | `/api/stats`      | Get dashboard statistics |
+
+Example JSON for POST/PUT:
+
+```json
+{
+  "title": "Sample Task",
+  "description": "Details about the task",
+  "priority": "high",
+  "category": "Development",
+  "status": "pending",
+  "due_date": "2025-07-30"
+}
+```
+
+---
+
+## 🧠 Tech Stack
+
+* PHP 7.x / 8.x
+* CodeIgniter 3.x
+* MySQL / MariaDB
+* Bootstrap 5
+* jQuery
+
+---
+
+## 🛤 Roadmap
+
+Planned features for future development:
+
+* [ ] User authentication system
+* [ ] Role-based access (Admin/User)
+* [ ] UI for managing categories
+* [ ] Task export to PDF/Excel
+* [ ] Notification for upcoming deadlines
+* [ ] Fully responsive mobile view
+* [ ] Dark mode
+
+---
+
+## 🤝 Contributing
+
+Want to contribute? Great! Here's how:
+
+1. Fork this repository
+2. Create a new branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m 'Add feature'`
+4. Push to your branch: `git push origin feature-name`
+5. Open a Pull Request
+
+We appreciate clean, documented code and clear descriptions of what you've done.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See `license.txt` for full details.
+
+```
