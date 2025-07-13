@@ -18,7 +18,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="<?php echo base_url(); ?>">
+      <a class="navbar-brand" href="<?php echo base_url('dashboard'); ?>">
         <i class="fas fa-tasks"></i> TaskFlow
       </a>
         
@@ -29,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url(); ?>">
+            <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
               <i class="fas fa-dashboard"></i> Dashboard
             </a>
           </li>
