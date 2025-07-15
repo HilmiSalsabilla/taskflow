@@ -1,21 +1,24 @@
-**TASKFLOW**
----
 
 ```markdown
 # TaskFlow
 
-**TaskFlow** is a simple task management application built with CodeIgniter 3. It allows users to create, edit, and delete tasks. This project does **not include user authentication**, and is intended for local usage or internal development environments.
+**TaskFlow** is a task management application built with CodeIgniter 3. It allows users to create, manage, and update tasks. This version includes **user authentication**, **role-based access control**, and **task management** features.
 
 ---
 
 ## 🎯 Key Features
 
-- Task Management (CRUD)
-- Task statistics on the dashboard
-- Modern UI using Bootstrap 5
-- Basic REST API (GET/POST/PUT/DELETE)
-- Color-coded categories and priorities
-- Task filtering by status, priority, and category
+- **User Authentication**: Login, registration, and role-based access (Admin/User).
+- **Task Management (CRUD)**: Create, edit, delete, and view tasks.
+- **Role Management**: Admin can manage user roles (Admin/User).
+- **Admin Dashboard**: Admins can manage tasks and users.
+- **User Management**: Admin can view and update user roles and track user activity.
+- **Search**: Search for tasks and users based on specific filters.
+- **Task Filtering**: Filter tasks by status (pending, in progress, completed), priority, and category.
+- **Task Assignment**: Tasks can be assigned to individual users or teams (planned for future versions).
+- **Task Notifications**: Email or popup notifications for task deadlines (planned for future versions).
+- **Data Export**: Export task data to CSV/Excel files (planned for future versions).
+- **Responsive UI**: Modern user interface built using **Bootstrap 5**.
 
 ---
 
@@ -25,84 +28,110 @@
 
 taskflow/
 ├── application/
-│   ├── controllers/     # Dashboard, Tasks, API
-│   ├── models/          # Task\_model
-│   ├── views/           # Dashboard and tasks pages
-│   └── config/          # Database, routing, autoload config
-├── assets/              # CSS, JS, and images
-├── system/              # CodeIgniter core
+│   ├── controllers/           # Dashboard, Tasks, Users, etc.
+│   ├── models/                # Task\_model, User\_model, etc.
+│   ├── views/                 # Dashboard, tasks, user management, etc.
+│   └── config/                # Database, routing, autoload config
+├── assets/                    # CSS, JS, and images
+├── system/                    # CodeIgniter core
 ├── index.php
 ├── composer.json
 └── .gitignore
 
-1. **Installation**:
-   
-	```` 
-	**Clone or extract** into your local server folder (e.g., `htdocs` for XAMPP):
-	```bash
-	git clone https://github.com/yourusername/taskflow.git
-	````
 
-3. **Create a MySQL database** and import the initial schema:
+## 📜 Installation
 
-   ```sql
-   CREATE DATABASE taskflow_db;
-   USE taskflow_db;
+### 1. Clone or Extract the Project
 
-   -- Tables `tasks` and `categories` are required
-   ```
+````
+---
 
-4. **Edit the database configuration**:
+Clone or extract the project to your local server folder (e.g., `htdocs` for XAMPP):
 
-   ```
-   application/config/database.php
-   ```
+```bash
+git clone https://github.com/HilmiSalsabilla/taskflow.git
+````
 
-5. **Set the base URL**:
+### 2. Set Up Database
 
-   ```
-   application/config/config.php
-   $config['base_url'] = 'http://localhost/taskflow/';
-   ```
+Create a MySQL database and import the initial schema:
 
-6. **Run the application** in your browser:
+```sql
+CREATE DATABASE taskflow_db;
+USE taskflow_db;
 
-   ```
-   http://localhost/taskflow
-   ```
+-- Create tables for users, tasks, and other necessary data
+```
+
+### 3. Edit Database Configuration
+
+Configure your database connection in `application/config/database.php`:
+
+```php
+$db['default'] = array(
+    'dsn'   => '',
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'taskflow_db',
+    'dbdriver' => 'mysqli',
+    // ...
+);
+```
+
+### 4. Set Base URL
+
+Set the base URL in `application/config/config.php`:
+
+```php
+$config['base_url'] = 'http://localhost/taskflow/';
+```
+
+### 5. Run the Application
+
+Now, navigate to `http://localhost/taskflow` in your browser.
 
 ---
 
 ## 📌 Usage
 
-* **Dashboard** displays overall task statistics and recent activity.
-* **Task Management**:
+### Dashboard
 
-  * Create, edit, delete tasks
-  * Filter tasks by status (pending, in progress, completed), priority, or category
-* **Predefined Categories**: Listed in the `categories` table
-* **Status Control**: Tasks can be updated directly from the main list
+The **Dashboard** shows overall task statistics and recent activity.
+
+### Task Management
+
+* Create, edit, and delete tasks.
+* Filter tasks by **status**, **priority**, or **category**.
+* Assign tasks to **users** or **teams**.
+
+### User Management
+
+* Admins can manage users, view last login, and update user roles.
+* The **search functionality** allows searching for tasks and users by various criteria.
 
 ---
 
 ## 🧰 Technologies Used
 
-* PHP 7.x / 8.x
-* CodeIgniter 3.x
-* Bootstrap 5
-* jQuery
-* MySQL / MariaDB
+* **PHP 7.x / 8.x**
+* **CodeIgniter 3.x**
+* **Bootstrap 5**
+* **jQuery**
+* **MySQL / MariaDB**
 
 ---
 
-## 📝 Notes
+## 📝 Planned Improvements
 
-* There is no login or role-based user system.
-* Ideal for prototypes, student projects, or internal tools.
+* **Task Deadline Notifications**: Email or popup notifications for upcoming task deadlines.
+* **Progress Tracking**: Track the progress of tasks and provide updates.
+* **Export to CSV/Excel**: Export task data to CSV or Excel files.
+* **Advanced Task Management**: Allow task assignment to multiple users or teams, with progress tracking and deadline management.
 
 ---
 
-## 🔌 API Endpoints
+## 📡 API Endpoints
 
 TaskFlow provides a few basic public API endpoints:
 
@@ -115,7 +144,7 @@ TaskFlow provides a few basic public API endpoints:
 | DELETE | `/api/tasks/{id}` | Delete a task            |
 | GET    | `/api/stats`      | Retrieve dashboard stats |
 
-Sample JSON body for `POST` or `PUT`:
+**Sample JSON body for POST or PUT:**
 
 ```json
 {
@@ -134,14 +163,10 @@ Sample JSON body for `POST` or `PUT`:
 
 Planned improvements for future versions:
 
-* [ ] Add user authentication (Login, Admin/User roles)
-* [ ] UI for category management
-* [ ] Export to PDF/Excel
-* [ ] Task deadline notifications (email / popup)
-* [ ] Fully responsive design for mobile
-* [ ] Dark mode support
-
-Feel free to contribute and help us bring these features to life!
+* **Task Deadline Notifications**: Email/popup notifications for upcoming task deadlines.
+* **Export Tasks**: Export tasks to CSV/Excel.
+* **Task Progress Tracking**: Track and update task progress.
+* **Multiple User Assignments**: Assign tasks to multiple users or teams.
 
 ---
 
@@ -149,11 +174,11 @@ Feel free to contribute and help us bring these features to life!
 
 Contributions are welcome! To get started:
 
-1. Fork this repository
-2. Create a new branch (`git checkout -b feature-name`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push your branch (`git push origin feature-name`)
-5. Open a Pull Request
+1. Fork this repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push your branch (`git push origin feature-name`).
+5. Open a Pull Request.
 
 Please include a clear explanation of what you changed and why.
 
@@ -161,7 +186,4 @@ Please include a clear explanation of what you changed and why.
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
-See `license.txt` for more information.
-
----
+This project is licensed under the MIT License. See `license.txt` for more information.
