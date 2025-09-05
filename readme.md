@@ -1,8 +1,8 @@
-
-```markdown
 # TaskFlow
 
-**TaskFlow** is a task management application built with CodeIgniter 3. It allows users to create, manage, and update tasks. This version includes **user authentication**, **role-based access control**, and **task management** features.
+---
+
+**TaskFlow** is a simple task management application built with CodeIgniter 3. It allows users to create, edit, and delete tasks. This project does **not include user authentication**, and is intended for local usage or internal development environments.
 
 ---
 
@@ -24,8 +24,6 @@
 
 ## 📦 Project Structure
 
-```
-
 taskflow/
 ├── application/
 │   ├── controllers/           # Dashboard, Tasks, Users, etc.
@@ -38,6 +36,7 @@ taskflow/
 ├── composer.json
 └── .gitignore
 
+---
 
 ## 📜 Installation
 
@@ -186,4 +185,9 @@ Please include a clear explanation of what you changed and why.
 
 ## 📄 License
 
-This project is licensed under the MIT License. See `license.txt` for more information.
+This project is licensed under the **MIT License**.
+See `license.txt` for more information.
+
+---
+
+Made with ❤️ by [Hilmi Salsabilla](https://github.com/HilmiSalsabilla)
